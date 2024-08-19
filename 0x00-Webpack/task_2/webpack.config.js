@@ -7,6 +7,7 @@ module.exports = {
     },
     performance: {
         maxAssetSize: 1000000,
+        maxEntrypointSize: 1000000,
     },
     output: {
         filename: 'bundle.js',
