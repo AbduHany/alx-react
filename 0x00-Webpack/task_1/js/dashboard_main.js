@@ -16,5 +16,5 @@ function updateCounter() {
     $('#count').text(`${clickCount} clicks on the button`);
 }
 
-const debouncedUpdateCounter = _.debounce(updateCounter, 300);
+const debouncedUpdateCounter = _.debounce(updateCounter, 300, { leading: true, trailing: false });
 $('button').on('click', debouncedUpdateCounter);
