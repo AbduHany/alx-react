@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Rubik", sans-serif;
+    box-sizing: border-box;
+    max-height: 100vh;
+}
+
+.App-header {
+    display: flex;
+    align-items: center;
+    color: #e1003c;
+    border-bottom: 5px solid #e1003c;
+    padding-left: 20px;
+}
+
+.App-body {
+    padding: 50px;
+    font-size: 1.5rem;
+    height: 59vh;
+}
+
+.App-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 5px solid #e1003c;
+    font-style: italic;
+    font-size: large;
+}
+
+#email,
+#password {
+    margin: 0 15px;
+}
+
+button.ok {
+    min-width: 50px;
+    min-height: 30px;
+    font-weight: bold;
+    background-color: white;
+    color: #e1003c;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+button.ok:hover {
+    background-color: #e1003c;
+    color: white;
+}
+
+button.ok:active {
+    background-color: #8e0127;
+}
