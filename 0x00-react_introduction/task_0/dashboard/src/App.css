@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.App-header {
+    display: flex;
+    align-items: center;
+    color: #e1003c;
+    border-bottom: 5px solid #e1003c;
+    padding-left: 20px;
+    height: 25vh;
+}
+
+.App-body {
+    height: 70vh;
+    padding: 50px;
+    font-size: 1.5rem;
+}
+
+.App-footer {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 5px solid #e1003c;
+    font-style: italic;
+    font-size: large;
+}
