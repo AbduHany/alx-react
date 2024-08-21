@@ -45,4 +45,7 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        extensions: ['.js', '.jsx'], // Allows you to import .js and .jsx files without specifying the extension
+    }
 }
