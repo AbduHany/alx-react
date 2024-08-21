@@ -5,6 +5,7 @@
     padding: 0;
     font-family: "Rubik", sans-serif;
     box-sizing: border-box;
+    max-height: 100vh;
 }
 
 .App-header {
@@ -18,7 +19,7 @@
 .App-body {
     padding: 50px;
     font-size: 1.5rem;
-    height: 70vh;
+    height: 59vh;
 }
 
 .App-footer {
@@ -35,7 +36,7 @@
     margin: 0 15px;
 }
 
-button {
+button.ok {
     min-width: 50px;
     min-height: 30px;
     font-weight: bold;
@@ -45,11 +46,11 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+button.ok:hover {
     background-color: #e1003c;
     color: white;
 }
 
-button:active {
+button.ok:active {
     background-color: #8e0127;
 }
