@@ -9,14 +9,14 @@ function App() {
         <img width={200} height={200} src={logo} alt="Holberton School logo"></img>
         <h1>School dashboard</h1>
       </header>
-      <body className="App-body">
+      <div className="App-body">
         <p>Login to access the full dashboard</p>
         <label>Email:</label>
         <input type="email" id="email" />
         <label>Password:</label>
         <input type="password" id="password"></input>
         <button className='ok'>OK</button>
-      </body>
+      </div>
       <footer className="App-footer">
         <p>Copyright {getFullYear()} - {getFooterCopy(true)}</p>
       </footer>
