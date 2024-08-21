@@ -32,7 +32,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(js|jsx)$/, // Match .js and .jsx files
+                test: /\.js$/, // Match .js and .jsx files
                 exclude: /node_modules/, // Exclude node_modules directory
                 use: {
                     loader: 'babel-loader',
