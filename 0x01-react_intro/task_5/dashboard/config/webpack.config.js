@@ -32,18 +32,12 @@ module.exports = {
                 ],
             },
             {
-                test: /\.js$/, // Match .js and .jsx files
+                test: /\.(js|jsx)$/, // Match .js and .jsx files
                 exclude: /node_modules/, // Exclude node_modules directory
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'], // Use Babel presets
-                    },
                 },
             }
         ]
-    },
-    resolve: {
-        extensions: ['.js', '.jsx'], // Allows you to import .js and .jsx files without specifying the extension
     }
 }
