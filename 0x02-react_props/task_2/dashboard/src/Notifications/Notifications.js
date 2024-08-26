@@ -11,7 +11,7 @@ const Notifications = () => {
             <ul>
                 <NotificationItem type="default" value="New course available" />
                 <NotificationItem type="urgent" value="New resume available" />
-                <NotificationItem data="urgent" html={getLatestNotification()} />
+                <NotificationItem type="urgent" html={{ __html: getLatestNotification() }} />
             </ul>
             <button style={{
                 marginRight: '10px',
