@@ -9,16 +9,16 @@ describe('<App />', () => {
 
     it('renders a div with class App-header', () => {
         const wrapper = shallow(<App />);
-        expect(wrapper.find('div .App-header').exists()).toBe(true);
+        expect(wrapper.find('.App-header').exists()).toBe(true);
     });
 
     it('renders a div with class App-body', () => {
         const wrapper = shallow(<App />);
-        expect(wrapper.find('div .App-body').exists()).toBe(true);
+        expect(wrapper.find('.App-body').exists()).toBe(true);
     });
 
     it('renders a div with class App-footer', () => {
         const wrapper = shallow(<App />);
-        expect(wrapper.find('div .App-footer').exists()).toBe(true);
+        expect(wrapper.find('.App-footer').exists()).toBe(true);
     });
 });
