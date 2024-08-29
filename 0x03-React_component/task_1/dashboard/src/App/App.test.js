@@ -67,11 +67,10 @@ describe('when isLoggedIn is true', () => {
     });
 });
 
-describe("Testing <App logOut={function} />", () => {
+describe("Test <App /> with logOut function", () => {
     // verify that when the keys control and h are pressed the logOut function,
     // passed as a prop, is called and the alert function is called with the string Logging you out
-
-    it("calls logOut and alerts 'Logging you out' when Ctrl+h is pressed", () => {
+    it("calls the logOut function and displays the alert", () => {
         const logOutSpy = jest.fn();
         const alertMock = jest.spyOn(global, 'alert').mockImplementation(() => { });
         const wrapper = mount(<App logOut={logOutSpy} isLoggedIn={true} />);
@@ -81,6 +80,5 @@ describe("Testing <App logOut={function} />", () => {
         expect(logOutSpy).toHaveBeenCalled();
         wrapper.unmount();
         jest.restoreAllMocks();
-    })
-
-})
+    });
+});
