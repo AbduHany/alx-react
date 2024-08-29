@@ -75,5 +75,40 @@ describe('<Notifications />', () => {
         instance.markAsRead(1);
         expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
         spy.mockRestore();
-    })
+    });
+
+    it('doesnt rerender when same list is given', () => {
+        const initialNotifications = [
+            { id: 1, type: "default", value: "Notification 01" },
+            { id: 2, type: "default", value: "Notification 02" },
+        ];
+
+        const shortNotifications = [
+            { id: 1, type: "default", value: "Notification 01" },
+        ];
+        const wrapper = shallow(<Notifications listNotifications={initialNotifications} displayDrawer={true} />);
+        const instance = wrapper.instance();
+        jest.spyOn(instance, 'render');
+        wrapper.setProps({ listNotifications: shortNotifications });
+        expect(instance.render).toHaveBeenCalledTimes(0);
+    });
+
+    it('doesnt rerender when same list is given', () => {
+        const initialNotifications = [
+            { id: 1, type: "default", value: "Notification 01" },
+            { id: 2, type: "default", value: "Notification 02" },
+        ];
+
+        const longerNotification = [
+            { id: 1, type: "default", value: "Notification 01" },
+            { id: 2, type: "default", value: "Notification 02" },
+            { id: 3, type: "default", value: "Notification 03" },
+            { id: 4, type: "default", value: "Notification 04" },
+        ]
+        const wrapper = shallow(<Notifications listNotifications={initialNotifications} displayDrawer={true} />);
+        const instance = wrapper.instance();
+        jest.spyOn(instance, 'render');
+        wrapper.setProps({ listNotifications: longerNotification });
+        expect(instance.render).toHaveBeenCalledTimes(1);
+    });
 });
