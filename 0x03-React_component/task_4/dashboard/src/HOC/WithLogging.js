@@ -1,3 +1,5 @@
+import React from "react";
+
 export const WithLogging = (WrappedComponent, id) => {
     const wrapper = class extends React.Component {
         constructor(props) {
