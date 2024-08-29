@@ -7,7 +7,6 @@ import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types';
 import { getLatestNotification } from '../utils/utils';
-import BodySection from '../BodySection/BodySection';
 
 
 class App extends React.Component {

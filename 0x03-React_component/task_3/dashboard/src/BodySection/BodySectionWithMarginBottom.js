@@ -16,3 +16,5 @@ class BodySectionWithMarginBottom extends React.Component {
         );
     }
 }
+
+export default BodySectionWithMarginBottom;
