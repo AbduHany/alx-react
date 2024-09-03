@@ -33,10 +33,10 @@ class BodySection extends React.Component {
 
 BodySection.propTypes = {
     title: PropTypes.string
-}
+};
 
 BodySection.defaultProps = {
     title: ''
-}
+};
 
 export default BodySection;
