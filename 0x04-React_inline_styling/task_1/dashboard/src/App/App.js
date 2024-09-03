@@ -79,21 +79,19 @@ class App extends React.Component {
 
     return (
       <>
-        <div className={css(styles.App)}>
-          <Notifications listNotifications={listNotifications} />
-          <div className={css(styles.AppHeader)}>
-            <Header />
-          </div>
-          <div className={css(styles.AppBody)}>
-            {this.props.isLoggedIn ?
-              <BodySectionWithMarginBottom title="Course list"><CourseList listCourses={listCourses} /></BodySectionWithMarginBottom> :
-              <BodySectionWithMarginBottom title="Log in to continue"><Login /></BodySectionWithMarginBottom>
-            }
-            <BodySection title="News from the School"><p>Abdelrahman Hany is the BEST developer ever! He'll conquer the world!</p></BodySection>
-          </div>
-          <div className={css(styles.AppFooter)}>
-            <Footer />
-          </div>
+        <Notifications listNotifications={listNotifications} />
+        <div className={css(styles.AppHeader)}>
+          <Header />
+        </div>
+        <div className={css(styles.AppBody)}>
+          {this.props.isLoggedIn ?
+            <BodySectionWithMarginBottom title="Course list"><CourseList listCourses={listCourses} /></BodySectionWithMarginBottom> :
+            <BodySectionWithMarginBottom title="Log in to continue"><Login /></BodySectionWithMarginBottom>
+          }
+          <BodySection title="News from the School"><p>Abdelrahman Hany is the BEST developer ever! He'll conquer the world!</p></BodySection>
+        </div>
+        <div className={css(styles.AppFooter)}>
+          <Footer />
         </div>
       </>
     );
