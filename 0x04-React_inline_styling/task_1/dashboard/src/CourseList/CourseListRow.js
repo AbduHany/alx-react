@@ -14,10 +14,10 @@ const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null 
         <tr style={isHeader ? headerStyle : rowStyle}>
             {isHeader ?
                 (textSecondCell === null ?
-                    <th style={headerStyle} colSpan={2}>{textFirstCell}</th> :
+                    <th colSpan={2}>{textFirstCell}</th> :
                     <>
-                        <th style={headerStyle}>{textFirstCell}</th>
-                        <th style={headerStyle}>{textSecondCell}</th>
+                        <th >{textFirstCell}</th>
+                        <th >{textSecondCell}</th>
                     </>
                 )
                 : <><td>{textFirstCell}</td><td>{textSecondCell}</td></>}
