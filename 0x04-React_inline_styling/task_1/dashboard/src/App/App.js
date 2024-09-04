@@ -10,30 +10,6 @@ import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 
-
-const cssVars = {
-  pinkColor: "#e01d3f",
-};
-
-const styles = StyleSheet.create({
-  appBody: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  appHeader: {
-    borderBottom: `3px solid ${cssVars.pinkColor}`,
-  },
-  appFooter: {
-    borderTop: `3px solid ${cssVars.pinkColor}`,
-    width: "100%",
-    justifyContent: "center",
-    fontStyle: "italic",
-    position: "fixed",
-    bottom: 0,
-    display: "flex",
-  }
-});
-
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
   { id: 2, name: "Webpack", credit: 20 },
@@ -71,26 +47,25 @@ class App extends Component {
     return (
       <>
         <Notifications listNotifications={listNotifications} />
-        <div className={css(styles.appHeader)}>
+        <div className={css(styles.header)}>
           <Header />
         </div>
-        <div className={css(styles.appBody)}>
-          {this.props.isLoggedIn ? (
+        <div className={css(styles.body)}>
+          {!this.props.isLoggedIn ? (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          ) : (
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={listCourses} />
             </BodySectionWithMarginBottom>
-          ) :
-            (
-              <BodySectionWithMarginBottom title="Log in to continue">
-                <Login />
-              </BodySectionWithMarginBottom>
-            )
-          }
+          )}
         </div>
         <BodySection title="News from the School">
           <p>Some Random Text</p>
         </BodySection>
-        <div className={css(styles.appFooter)}>
+
+        <div className={css(styles.footer)}>
           <Footer />
         </div>
       </>
@@ -107,5 +82,30 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
+
+const cssVars = {
+  mainColor: "#e01d3f",
+};
+
+const styles = StyleSheet.create({
+  header: {
+    borderBottom: `3px solid ${cssVars.mainColor}`,
+  },
+
+  body: {
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  footer: {
+    borderTop: `3px solid ${cssVars.mainColor}`,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    position: "fixed",
+    bottom: 0,
+    fontStyle: "italic",
+  },
+});
 
 export default App;
