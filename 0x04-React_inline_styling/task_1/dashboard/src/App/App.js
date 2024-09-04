@@ -12,7 +12,7 @@ import { StyleSheet, css } from "aphrodite";
 
 
 const cssVars = {
-  pinkColor: "#e1003c",
+  pinkColor: "#e01d3f",
 };
 
 const styles = StyleSheet.create({
@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   appHeader: {
-    borderBottom: `5px solid ${cssVars.pinkColor}`,
+    borderBottom: `3px solid ${cssVars.pinkColor}`,
   },
   appFooter: {
-    borderTop: `5px solid ${cssVars.pinkColor}`,
+    borderTop: `3px solid ${cssVars.pinkColor}`,
     width: "100%",
     justifyContent: "center",
     fontStyle: "italic",
@@ -90,7 +90,6 @@ class App extends Component {
         <BodySection title="News from the School">
           <p>Some Random Text</p>
         </BodySection>
-
         <div className={css(styles.appFooter)}>
           <Footer />
         </div>
