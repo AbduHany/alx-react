@@ -1,5 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite';
+
+
+const styles = StyleSheet.create({
+    bodySection: {
+        display: "flex",
+        flexWrap: "wrap",
+        width: "100%",
+    },
+
+    bodySectionH2: {
+        width: "100%",
+    },
+});
 
 
 class BodySection extends React.Component {
@@ -9,8 +23,8 @@ class BodySection extends React.Component {
 
     render() {
         return (
-            <div className="bodySection">
-                <h2>{this.props.title}</h2>
+            <div className={css(styles.bodySection)}>
+                <h2 className={css(styles.bodySectionH2)}>{this.props.title}</h2>
                 {this.props.children}
             </div>
         );
@@ -19,10 +33,10 @@ class BodySection extends React.Component {
 
 BodySection.propTypes = {
     title: PropTypes.string
-}
+};
 
 BodySection.defaultProps = {
     title: ''
-}
+};
 
 export default BodySection;

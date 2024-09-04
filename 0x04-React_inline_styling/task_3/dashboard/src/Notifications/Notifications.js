@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         margin: "20px",
         marginLeft: "40px",
     },
+
 });
 
 class Notifications extends React.Component {
@@ -45,7 +46,7 @@ class Notifications extends React.Component {
         return (
             <>
                 <div className={css(styles.menuItem)}>
-                    <p>Your notifications</p>
+                    <p className={css(styles.p)}>Your notifications</p>
                 </div>
                 {this.props.displayDrawer &&
                     <div className={css(styles.notifications)}>

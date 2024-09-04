@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     header: {
         display: "flex",
         alignItems: "center",
-        color: cssVars.mainColor,
         fontSize: "20px",
     },
     headerImg: {
@@ -15,7 +14,6 @@ const styles = StyleSheet.create({
     },
 });
 
-StyleSheetTestUtils.suppressStyleInjection();
 const Header = () => {
     return (
         <div className={css(styles.header)}>
