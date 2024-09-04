@@ -76,14 +76,16 @@ class App extends Component {
         </div>
         <div className={css(styles.appBody)}>
           {this.props.isLoggedIn ? (
-            <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
-            </BodySectionWithMarginBottom>
-          ) : (
             <BodySectionWithMarginBottom title="Course list">
               <CourseList listCourses={listCourses} />
             </BodySectionWithMarginBottom>
-          )}
+          ) :
+            (
+              <BodySectionWithMarginBottom title="Log in to continue">
+                <Login />
+              </BodySectionWithMarginBottom>
+            )
+          }
         </div>
         <BodySection title="News from the School">
           <p>Some Random Text</p>
