@@ -10,6 +10,33 @@ import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 
+
+const cssVars = {
+  mainColor: "#e1003c",
+};
+
+const styles = StyleSheet.create({
+  appBody: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  appHeader: {
+    display: "flex",
+    alignItems: "center",
+    color: "#e1003c",
+    borderBottom: `5px solid ${cssVars.mainColor}`,
+    paddingLeft: "20px",
+  },
+  appFooter: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderTop: `5px solid ${cssVars.mainColor}`,
+    fontStyle: "italic",
+    fontSize: "large",
+  }
+});
+
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
   { id: 2, name: "Webpack", credit: 20 },
@@ -44,15 +71,14 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn, logOut } = this.props;
     return (
       <>
         <Notifications listNotifications={listNotifications} />
-        <div className={css(styles.app)}>
+        <div className={css(styles.appHeader)}>
           <Header />
         </div>
-        <div className={css(styles.body)}>
-          {!isLoggedIn ? (
+        <div className={css(styles.appBody)}>
+          {this.props.isLoggedIn ? (
             <BodySectionWithMarginBottom title="Log in to continue">
               <Login />
             </BodySectionWithMarginBottom>
@@ -66,7 +92,7 @@ class App extends Component {
           <p>Some Random Text</p>
         </BodySection>
 
-        <div className={css(styles.footer)}>
+        <div className={css(styles.appFooter)}>
           <Footer />
         </div>
       </>
@@ -76,37 +102,12 @@ class App extends Component {
 
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => {},
+  logOut: () => { },
 };
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
-
-const cssVars = {
-  mainColor: "#e01d3f",
-};
-
-const styles = StyleSheet.create({
-  app: {
-    borderBottom: `3px solid ${cssVars.mainColor}`,
-  },
-
-  body: {
-    display: "flex",
-    justifyContent: "center",
-  },
-
-  footer: {
-    borderTop: `3px solid ${cssVars.mainColor}`,
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    position: "fixed",
-    bottom: 0,
-    fontStyle: "italic",
-  },
-});
 
 export default App;
