@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
     login: {
-        margin: "50px",
+        margin: "10px",
         flexGrow: 1,
     },
     inputField: {
