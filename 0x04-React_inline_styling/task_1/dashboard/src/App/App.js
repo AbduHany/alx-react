@@ -22,13 +22,38 @@ const listNotifications = [
   { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
 ];
 
+const cssVars = {
+  mainColor: "#e01d3f",
+};
+
+const styles = StyleSheet.create({
+  header: {
+    borderBottom: `3px solid ${cssVars.mainColor}`,
+  },
+
+  body: {
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  footer: {
+    borderTop: `3px solid ${cssVars.mainColor}`,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    position: "fixed",
+    bottom: 0,
+    fontStyle: "italic",
+  },
+});
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleKeyCombination = this.handleKeyCombination.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
-  handleKeyCombination(e) {
+  handleKeydown(e) {
     if (e.key === "h" && e.ctrlKey) {
       alert("Logging you out");
       this.props.logOut();
@@ -36,11 +61,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyCombination);
+    document.addEventListener("keydown", this.handleKeydown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyCombination);
+    document.removeEventListener("keydown", this.handleKeydown);
   }
 
   render() {
@@ -82,30 +107,5 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
-
-const cssVars = {
-  mainColor: "#e01d3f",
-};
-
-const styles = StyleSheet.create({
-  header: {
-    borderBottom: `3px solid ${cssVars.mainColor}`,
-  },
-
-  body: {
-    display: "flex",
-    justifyContent: "center",
-  },
-
-  footer: {
-    borderTop: `3px solid ${cssVars.mainColor}`,
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    position: "fixed",
-    bottom: 0,
-    fontStyle: "italic",
-  },
-});
 
 export default App;
