@@ -12,7 +12,7 @@ import { StyleSheet, css } from "aphrodite";
 
 
 const cssVars = {
-  mainColor: "#e1003c",
+  pinkColor: "#e1003c",
 };
 
 const styles = StyleSheet.create({
@@ -21,19 +21,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   appHeader: {
-    display: "flex",
-    alignItems: "center",
-    color: "#e1003c",
-    borderBottom: `5px solid ${cssVars.mainColor}`,
-    paddingLeft: "20px",
+    borderBottom: `5px solid ${cssVars.pinkColor}`,
   },
   appFooter: {
-    display: "flex",
+    borderTop: `5px solid ${cssVars.pinkColor}`,
+    width: "100%",
     justifyContent: "center",
-    alignItems: "center",
-    borderTop: `5px solid ${cssVars.mainColor}`,
     fontStyle: "italic",
-    fontSize: "large",
+    position: "fixed",
+    bottom: 0,
+    display: "flex",
   }
 });
 
