@@ -53,8 +53,8 @@ class App extends Component {
     this.handleKeydown = this.handleKeydown.bind(this);
   }
 
-  handleKeydown(e) {
-    if (e.key === "h" && e.ctrlKey) {
+  handleKeydown = (event) => {
+    if (event.key === "h" && event.ctrlKey) {
       alert("Logging you out");
       this.props.logOut();
     }
@@ -89,7 +89,6 @@ class App extends Component {
         <BodySection title="News from the School">
           <p>Some Random Text</p>
         </BodySection>
-
         <div className={css(styles.footer)}>
           <Footer />
         </div>

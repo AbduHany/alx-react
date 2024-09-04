@@ -22,67 +22,6 @@ const listNotifications = [
   { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
 ];
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.handleKeyCombination = this.handleKeyCombination.bind(this);
-  }
-
-  handleKeyCombination(e) {
-    if (e.key === "h" && e.ctrlKey) {
-      alert("Logging you out");
-      this.props.logOut();
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyCombination);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyCombination);
-  }
-
-  render() {
-    return (
-      <>
-        <Notifications listNotifications={listNotifications} />
-        <div className={css(styles.header)}>
-          <Header />
-        </div>
-        <div className={css(styles.body)}>
-          {!this.props.isLoggedIn ? (
-            <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
-            </BodySectionWithMarginBottom>
-          ) : (
-            <BodySectionWithMarginBottom title="Course list">
-              <CourseList listCourses={listCourses} />
-            </BodySectionWithMarginBottom>
-          )}
-        </div>
-        <BodySection title="News from the School">
-          <p>Some Random Text</p>
-        </BodySection>
-
-        <div className={css(styles.footer)}>
-          <Footer />
-        </div>
-      </>
-    );
-  }
-}
-
-App.defaultProps = {
-  isLoggedIn: false,
-  logOut: () => { },
-};
-
-App.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logOut: PropTypes.func,
-};
-
 const cssVars = {
   mainColor: "#e01d3f",
 };
@@ -107,5 +46,65 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
 });
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleKeydown = this.handleKeydown.bind(this);
+  }
+
+  handleKeydown = (event) => {
+    if (event.key === "h" && event.ctrlKey) {
+      alert("Logging you out");
+      this.props.logOut();
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeydown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeydown);
+  }
+
+  render() {
+    return (
+      <>
+        <Notifications listNotifications={listNotifications} />
+        <div className={css(styles.header)}>
+          <Header />
+        </div>
+        <div className={css(styles.body)}>
+          {!this.props.isLoggedIn ? (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          ) : (
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={listCourses} />
+            </BodySectionWithMarginBottom>
+          )}
+        </div>
+        <BodySection title="News from the School">
+          <p>Some Random Text</p>
+        </BodySection>
+        <div className={css(styles.footer)}>
+          <Footer />
+        </div>
+      </>
+    );
+  }
+}
+
+App.defaultProps = {
+  isLoggedIn: false,
+  logOut: () => { },
+};
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
+};
 
 export default App;
