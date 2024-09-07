@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
     urgentData: {
         color: "red",
     },
+    listItem: {
+        '@media (max-width: 900px)': {
+            width: '100%',
+            borderBottom: "1px solid black",
+            fontSize: "20px",
+            padding: "10px 8px",
+        }
+    }
 });
 
 class NotificationItem extends React.PureComponent {
@@ -20,7 +28,7 @@ class NotificationItem extends React.PureComponent {
 
     render() {
         return (
-            <li className={css(this.props.type === "default" ? styles.defaultData : styles.urgentData)} onClick={() => { this.props.markAsRead(this.props.id); }} data={this.props.type} dangerouslySetInnerHTML={this.props.html}>
+            <li className={css(styles.listItem, this.props.type === "default" ? styles.defaultData : styles.urgentData)} onClick={() => { this.props.markAsRead(this.props.id); }} data={this.props.type} dangerouslySetInnerHTML={this.props.html}>
                 {this.props.value}
             </li>
         );
