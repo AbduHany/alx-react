@@ -20,10 +20,24 @@ const styles = StyleSheet.create({
         position: "fixed",
         top: "40px",
         right: 0,
+        backgroundColor: "white",
+        '@media (max-width: 900px)': {
+            width: "100vw",
+            height: "100vh",
+            margin: 0,
+            padding: 0,
+            top: 0,
+            fontSize: '20px',
+        }
     },
     ul: {
         margin: "20px",
         marginLeft: "40px",
+        '@media (max-width: 900px)': {
+            margin: 0,
+            listStyle: "none",
+            padding: 0,
+        }
     },
 
 });

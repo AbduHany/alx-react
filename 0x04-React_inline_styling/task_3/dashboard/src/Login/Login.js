@@ -5,10 +5,19 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
     login: {
         margin: "10px",
-        flexGrow: 1,
+        width: "100%",
+        '@media (max-width: 900px)': {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: '5px',
+        }
     },
     inputField: {
-        margin: "0 15px"
+        margin: "0 15px",
+        '@media (max-width: 900px)': {
+            margin: 0,
+        }
     },
     buttonOk: {
         minWidth: "50px",
