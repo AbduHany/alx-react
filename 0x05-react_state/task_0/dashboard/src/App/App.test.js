@@ -91,6 +91,7 @@ describe("Test State of <App />", () => {
         const wrapper = mount(<App />);
         expect(wrapper.state('displayDrawer')).toBe(false);
     });
+
     it("handleHideDrawer changes state", () => {
         const wrapper = mount(<App />);
         wrapper.setState({ displayDrawer: true });
