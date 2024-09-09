@@ -111,16 +111,29 @@ describe('<Notifications />', () => {
 
     it('clicking on menu item should call handleDisplayDrawer', () => {
         const handleDisplayDrawer = jest.fn();
-        const wrapper = mount(<Notifications handleDisplayDrawer={handleDisplayDrawer} />);
+        const handleHideDrawer = jest.fn();
+        const wrapper = shallow(<Notifications
+            handleDisplayDrawer={handleDisplayDrawer}
+            handleHideDrawer={handleHideDrawer}
+        />);
         const menuItem = wrapper.find('div').at(0);
         menuItem.prop('onClick')();
         expect(handleDisplayDrawer).toHaveBeenCalledTimes(1);
+        expect(handleHideDrawer).toHaveBeenCalledTimes(0);
+        jest.restoreAllMocks();
     });
     it('clicking on close button should call handleHideDrawer', () => {
         const handleHideDrawer = jest.fn();
-        const wrapper = mount(<Notifications displayDrawer={true} handleHideDrawer={handleHideDrawer} />);
+        const handleDisplayDrawer = jest.fn();
+        const wrapper = mount(<Notifications
+            displayDrawer={true}
+            handleHideDrawer={handleHideDrawer}
+            handleDisplayDrawer={handleDisplayDrawer}
+        />);
         const closeButton = wrapper.find('button');
         closeButton.prop('onClick')();
         expect(handleHideDrawer).toHaveBeenCalledTimes(1);
+        expect(handleDisplayDrawer).toHaveBeenCalledTimes(0);
+        jest.restoreAllMocks();
     });
 });
