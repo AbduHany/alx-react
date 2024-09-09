@@ -96,12 +96,14 @@ class Notifications extends React.Component {
         return (
             <>
                 <div
-                    onClick={() => { this.props.handleDisplayDrawer(); console.log(this.props.displayDrawer) }}
-                    className={css(styles.menuItem, this.props.displayDrawer ? styles.hiddenMenuItem : '')}>
+                    onClick={this.props.handleDisplayDrawer}
+                    className={css(styles.menuItem, this.props.displayDrawer ? styles.hiddenMenuItem : '')}
+                    id='menuItem'
+                >
                     <p>Your notifications</p>
                 </div>
                 {this.props.displayDrawer &&
-                    <div className={css(styles.notifications)}>
+                    <div className={css(styles.notifications)} id="Notifications">
                         <ul className={css(styles.ul)}>
                             {this.props.listNotifications.length === 0 ?
                                 <NotificationItem markAsRead={this.markAsRead} type='default' value="No new notification for now" /> :
@@ -128,7 +130,10 @@ class Notifications extends React.Component {
                             position: 'absolute',
                             right: '30px',
                             top: '15px',
-                        }} aria-label='close' onClick={() => { this.props.handleHideDrawer(); console.log("Close button has been clicked") }}>
+                        }} aria-label='close'
+                            onClick={this.props.handleHideDrawer}
+                            id='closeNotifications'
+                        >
                             <img width="10px" src={closeIcon} alt="close button"></img>
                         </button>
                     </div >

@@ -116,8 +116,8 @@ describe('<Notifications />', () => {
             handleDisplayDrawer={handleDisplayDrawer}
             handleHideDrawer={handleHideDrawer}
         />);
-        const menuItem = wrapper.find('div').at(0);
-        menuItem.prop('onClick')();
+        const menuItem = wrapper.find('#menuItem');
+        menuItem.simulate('click');
         expect(handleDisplayDrawer).toHaveBeenCalledTimes(1);
         expect(handleHideDrawer).toHaveBeenCalledTimes(0);
         jest.restoreAllMocks();
@@ -130,8 +130,8 @@ describe('<Notifications />', () => {
             handleHideDrawer={handleHideDrawer}
             handleDisplayDrawer={handleDisplayDrawer}
         />);
-        const closeButton = wrapper.find('button');
-        closeButton.prop('onClick')();
+        const closeButton = wrapper.find('#closeNotifications');
+        closeButton.simulate('click');
         expect(handleHideDrawer).toHaveBeenCalledTimes(1);
         expect(handleDisplayDrawer).toHaveBeenCalledTimes(0);
         jest.restoreAllMocks();
