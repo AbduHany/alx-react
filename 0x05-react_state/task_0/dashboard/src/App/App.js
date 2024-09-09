@@ -22,86 +22,89 @@ const listNotifications = [
   { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
 ];
 
+document.body.style.margin = 0;
+
 const cssVars = {
   mainColor: "#e01d3f",
 };
 
 const styles = StyleSheet.create({
-  "App": {
-    margin: 0,
-    padding: 0,
+  container: {
+    marginLeft: "8px",
+    marginRight: "8px",
     fontFamily: "sans-serif",
-    boxSizing: "border-box",
-    maxHeight: "100vh",
   },
-  "AppBody": {
+
+  app: {
+    color: cssVars.mainColor,
+    borderBottom: `5px solid ${cssVars.mainColor}`,
+  },
+
+  appBody: {
     padding: "50px",
-    fontSize: "1.5rem",
-    height: "59vh",
   },
-  "AppHeader": {
-    display: "flex",
-    alignItems: "center",
-    color: "#e1003c",
-    borderBottom: "5px solid #e1003c",
-    paddingLeft: "20px",
-  },
-  'AppFooter': {
+
+  footer: {
+    borderTop: `5px solid ${cssVars.mainColor}`,
+    width: "100%",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    borderTop: "5px solid #e1003c",
+    position: "fixed",
+    bottom: 0,
     fontStyle: "italic",
-    fontSize: "large",
-  }
+  },
 });
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleKeydown = this.handleKeydown.bind(this);
+    this.handleKeyCombination = this.handleKeyCombination.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
-    this.state = { "displayDrawer": false };
+    this.state = { displayDrawer: false };
   }
 
-  handleDisplayDrawer = () => {
-    this.setState({ "displayDrawer": true });
-  }
-
-  handleHideDrawer = () => {
-    this.setState({ "displayDrawer": false });
-  }
-
-  handleKeydown = (event) => {
-    if (event.key === "h" && event.ctrlKey) {
+  handleKeyCombination(e) {
+    if (e.key === "h" && e.ctrlKey) {
       alert("Logging you out");
       this.props.logOut();
     }
   }
 
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+  }
+
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
+  }
+
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeydown);
+    document.addEventListener("keydown", this.handleKeyCombination);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeydown);
+    document.removeEventListener("keydown", this.handleKeyCombination);
   }
 
   render() {
+    const { isLoggedIn } = this.props;
+    const { displayDrawer } = this.state;
+
     return (
       <>
-        <div className={css(styles.App)}>
-          <Notifications
-            displayDrawer={this.state.displayDrawer}
-            handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer}
-            listNotifications={listNotifications} />
-          <div className={css(styles.AppHeader)}>
+        <Notifications
+          listNotifications={listNotifications}
+          displayDrawer={displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer}
+          handleHideDrawer={this.handleHideDrawer}
+        />
+        <div className={css(styles.container)}>
+          <div className={css(styles.app)}>
             <Header />
           </div>
-          <div className={css(styles.AppBody)}>
-            {!this.props.isLoggedIn ? (
+          <div className={css(styles.appBody)}>
+            {!isLoggedIn ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login />
               </BodySectionWithMarginBottom>
@@ -110,11 +113,23 @@ class App extends Component {
                 <CourseList listCourses={listCourses} />
               </BodySectionWithMarginBottom>
             )}
-            <BodySection title="News from the School">
-              <p>Some Random Text</p>
-            </BodySection>
           </div>
-          <div className={css(styles.AppFooter)}>
+          <BodySection title="News from the School">
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
+          </BodySection>
+
+          <div className={css(styles.footer)}>
             <Footer />
           </div>
         </div>
