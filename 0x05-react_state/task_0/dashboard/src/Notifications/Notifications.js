@@ -144,10 +144,14 @@ class Notifications extends Component {
           <div className={css(styles.notifications)} id="Notifications">
             <button
               style={{
-                background: "transparent",
-                border: "none",
+                marginRight: '10px',
+                background: "white",
+                border: "1px solid lightgrey",
+                borderRadius: "5px",
+                padding: '3px',
                 position: "absolute",
-                right: 20,
+                right: '30px',
+                top: '15px',
               }}
               aria-label="close"
               onClick={handleHideDrawer}
