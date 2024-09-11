@@ -63,23 +63,23 @@ const styles = StyleSheet.create({
   },
 
   notifications: {
-    float: "right",
-    padding: "10px",
-    margin: "20px",
-    animationDuration: "0.8s",
-    animationIterationCount: 1,
-    animationFillMode: "forwards",
+    margin: "10px 30px",
+    paddingLeft: "10px",
     border: "1px dashed red",
+    position: "fixed",
+    top: "20px",
+    right: 0,
+    backgroundColor: "white",
     [screenSize.small]: {
-      float: "none",
-      border: "none",
-      listStyle: "none",
-      padding: 0,
-      fontSize: "20px",
-      position: "absolute",
-      background: "white",
-      height: "110vh",
       width: "100vw",
+      height: "100vh",
+      margin: 0,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 1,
+      fontSize: "20px",
     },
   },
 
@@ -93,8 +93,11 @@ const styles = StyleSheet.create({
   },
 
   notificationsUL: {
+    margin: "20px",
     [screenSize.small]: {
       padding: 0,
+      margin: 0,
+      listStyle: "none",
     },
   },
 });

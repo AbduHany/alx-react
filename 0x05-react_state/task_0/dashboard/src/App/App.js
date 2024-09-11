@@ -49,9 +49,10 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    position: "fixed",
+    position: "sticky",
     bottom: 0,
     fontStyle: "italic",
+    backgroundColor: "white",
   },
 });
 
