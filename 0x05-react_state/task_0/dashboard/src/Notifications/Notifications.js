@@ -6,10 +6,6 @@ import closeIcon from "../assets/close-icon.png";
 import { StyleSheet, css } from "aphrodite";
 
 
-const screenSize = {
-  small: "@media screen and (max-width: 900px)",
-};
-
 const opacityAnimation = {
   from: {
     opacity: 0.5,
@@ -54,12 +50,12 @@ const styles = StyleSheet.create({
   },
 
   menuItemTextHidden: {
-    marginRight: "8px",
+    margin: "8px",
     display: "none",
   },
 
   menuItemTextShown: {
-    marginRight: "8px",
+    margin: "8px",
   },
 
   notifications: {
@@ -70,7 +66,7 @@ const styles = StyleSheet.create({
     top: "20px",
     right: 0,
     backgroundColor: "white",
-    [screenSize.small]: {
+    "@media screen and (max-width: 900px)": {
       width: "100vw",
       height: "100vh",
       margin: 0,
@@ -94,7 +90,7 @@ const styles = StyleSheet.create({
 
   notificationsUL: {
     margin: "20px",
-    [screenSize.small]: {
+    "@media screen and (max-width: 900px)": {
       padding: 0,
       margin: 0,
       listStyle: "none",
@@ -128,10 +124,6 @@ class Notifications extends Component {
       handleHideDrawer,
     } = this.props;
 
-    const menuTextStyle = css(
-      displayDrawer ? styles.menuItemTextHidden : styles.menuItemTextShown
-    );
-
     return (
       <>
         <div
@@ -139,13 +131,12 @@ class Notifications extends Component {
           id="menuItem"
           onClick={handleDisplayDrawer}
         >
-          <p className={menuTextStyle}>Your notifications</p>
+          <p className={css(displayDrawer ? styles.menuItemTextHidden : styles.menuItemTextShown)}>Your notifications</p>
         </div>
         {displayDrawer && (
           <div className={css(styles.notifications)} id="Notifications">
             <button
               style={{
-                marginRight: '10px',
                 background: "white",
                 border: "1px solid lightgrey",
                 borderRadius: "5px",
