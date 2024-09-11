@@ -6,10 +6,6 @@ import closeIcon from "../assets/close-icon.png";
 import { StyleSheet, css } from "aphrodite";
 
 
-const cssVars = {
-  mainColor: "#e01d3f",
-};
-
 const screenSize = {
   small: "@media screen and (max-width: 900px)",
 };
@@ -45,12 +41,14 @@ const bounceAnimation = {
 
 const styles = StyleSheet.create({
   menuItem: {
-    float: "right",
+    position: "fixed",
+    right: "20px",
+    top: "20px",
     backgroundColor: "#fff8f8",
     ":hover": {
       cursor: "pointer",
-      animationName: [opacityAnimation, bounceAnimation],
-      animationDuration: "1s, 0.5s",
+      animationName: [bounceAnimation, opacityAnimation],
+      animationDuration: "500ms, 1000ms",
       animationIterationCount: 3,
     },
   },
