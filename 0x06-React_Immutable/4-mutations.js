@@ -1,6 +1,6 @@
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 
-const map = fromJS({
+export const map = Map({
   1: 'Liam',
   2: 'Noah',
   3: 'Elijah',
@@ -9,6 +9,4 @@ const map = fromJS({
   6: 'Lucas',
 });
 
-const map2 = map.set(2, 'Benjamin').set(4, 'Oliver');
-
-export { map, map2 };
+export const map2 = map.set(2, 'Benjamin').set(4, 'Oliver');
