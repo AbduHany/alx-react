@@ -1,4 +1,4 @@
-import { Map } from './node_modules/immutable/dist/immutable';
+import { Map } from 'immutable';
 
 export default function getImmutableObject(object) {
   let newMap = Map();
