@@ -49,19 +49,13 @@ function loginFailure() {
 }
 
 function loginRequest(email, password) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(login(email, password));
-
         return fetch('/login-success.json')
-            .then((res) => res.json())
-            .then((user) => {
-                if (user) dispatch(loginSuccess());
-                else dispatch(loginFailure());
-            })
-            .catch((err) => {
-                dispatch(loginFailure());
-            })
-    }
+            .then(response => response.json())
+            .then(data => dispatch(loginSuccess()))
+            .catch(error => dispatch(loginFailure()));
+    };
 }
 
 const boundUIActionCreators = dispatch => bindActionCreators({
@@ -78,5 +72,7 @@ export {
     displayNotificationDrawer,
     hideNotificationDrawer,
     boundUIActionCreators,
-    loginRequest
+    loginRequest,
+    loginSuccess,
+    loginFailure
 };
