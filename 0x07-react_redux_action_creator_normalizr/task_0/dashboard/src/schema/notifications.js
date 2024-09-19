@@ -1,4 +1,4 @@
-import * as notificationObjects from '../notifications.json';
+import * as notificationObjects from '../../notifications.json';
 
 export default function getAllNotificationsByUser(userId) {
     let contextList = [];
