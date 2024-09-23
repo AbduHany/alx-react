@@ -2,27 +2,23 @@ import {
     LOGIN,
     LOGOUT,
     DISPLAY_NOTIFICATION_DRAWER,
-    HIDE_NOTIFICATION_DRAWER,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE
+    HIDE_NOTIFICATION_DRAWER
 } from "./uiActionTypes";
 import {
     login,
     logout,
     hideNotificationDrawer,
-    displayNotificationDrawer,
     loginRequest,
+    displayNotificationDrawer,
     loginSuccess,
     loginFailure
 } from "./uiActionCreators";
-import configureStore from 'redux-mock-store';
 import fetchMock from 'fetch-mock';
+import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
 
-
+const mockStore = configureStore([thunk]);
 describe('uiActionCreators test', () => {
     it('login function returns correct action', () => {
         const expectedAction = {
@@ -61,40 +57,38 @@ describe('uiActionCreators test', () => {
     });
 });
 
-describe('async function tests', () => {
-    it('loginRequest function dispatches LOGIN and LOGIN_SUCCESS actions on success', () => {
-        const store = mockStore();
+describe('Async Action Creators Test', () => {
+    afterEach(() => {
+        fetchMock.restore();
+    });
+
+    it('loginRequest dispatches correct actions on success', () => {
+        const store = mockStore({});
+        fetchMock.restore();
+
         fetchMock.getOnce('/login-success.json', {
-            body: {
-                success: true,
-                user: {
-                    email: "abdu.hany@gmail.com",
-                    password: "STRONG_PASS"
-                }
-            },
-            headers: { 'Content-Type': 'application/json' }
+            status: 200,
         });
-        return store.dispatch(loginRequest("abdu.hany@gmail.com", "STRONG_PASS"))
+        return store.dispatch(loginRequest('abdu.hany@gmail.com', 'STRONG_PASS'))
             .then(() => {
                 const actions = store.getActions();
-                expect(actions[0].type).toBe(LOGIN);
-                expect(actions[1].type).toBe(LOGIN_SUCCESS);
+                expect(actions[0]).toEqual(login('abdu.hany@gmail.com', 'STRONG_PASS'));
+                expect(actions[1]).toEqual(loginSuccess());
             });
     });
 
-    it('loginRequest function dispatches LOGIN and LOGIN_FAILURE actions on failure', () => {
+    it('loginRequest dispatches correct actions on success', () => {
         const store = mockStore({});
+        fetchMock.restore();
+
         fetchMock.getOnce('/login-success.json', {
             status: 404,
-            body: {
-                error: 'Not found'
-            }
         });
-        return store.dispatch(loginRequest("abdu.hany@gmail.com", "STRONG_PASS"))
+        return store.dispatch(loginRequest('abdu.hany@gmail.com', 'STRONG_PASS'))
             .then(() => {
                 const actions = store.getActions();
-                expect(actions[0].type).toBe(LOGIN);
-                expect(actions[1].type).toBe(LOGIN_FAILURE);
+                expect(actions[0]).toEqual(login('abdu.hany@gmail.com', 'STRONG_PASS'));
+                expect(actions[1]).toEqual(loginFailure());
             });
     });
 });
