@@ -11,7 +11,8 @@ import {
     loginRequest,
     displayNotificationDrawer,
     loginSuccess,
-    loginFailure
+    loginFailure,
+    boundUIActionCreators
 } from "./uiActionCreators";
 import fetchMock from 'fetch-mock';
 import configureStore from 'redux-mock-store';
@@ -77,7 +78,7 @@ describe('Async Action Creators Test', () => {
             });
     });
 
-    it('loginRequest dispatches correct actions on success', () => {
+    it('loginRequest dispatches correct actions on failure', () => {
         const store = mockStore({});
         fetchMock.restore();
 

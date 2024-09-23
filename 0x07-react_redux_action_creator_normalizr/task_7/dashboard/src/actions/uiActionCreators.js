@@ -64,7 +64,9 @@ const boundUIActionCreators = dispatch => bindActionCreators({
     login,
     logout,
     displayNotificationDrawer,
-    hideNotificationDrawer
+    hideNotificationDrawer,
+    loginSuccess,
+    loginFailure,
 }, dispatch);
 
 export {
