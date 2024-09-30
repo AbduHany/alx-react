@@ -99,21 +99,6 @@ describe("Test <App /> with logOut function", () => {
 });
 
 describe("Test State of <App />", () => {
-    it("displayDrawer is false", () => {
-        const wrapper = mount(<App />);
-        expect(wrapper.state('displayDrawer')).toBe(false);
-        wrapper.instance().handleDisplayDrawer();
-        expect(wrapper.state('displayDrawer')).toBe(true);
-        wrapper.instance().handleHideDrawer();
-        expect(wrapper.state('displayDrawer')).toBe(false);
-    });
-
-    it("handleHideDrawer changes state", () => {
-        const wrapper = mount(<App />);
-        wrapper.setState({ displayDrawer: true });
-        wrapper.instance().handleHideDrawer();
-        expect(wrapper.state('displayDrawer')).toBe(false);
-    });
 
     it('login changes state', () => {
         const wrapper = mount(<App />);
@@ -150,9 +135,10 @@ describe('Testing mapStateToProps function', () => {
 
     it('returns the right object', () => {
         let state = fromJS({
-            isUserLoggedIn: true
+            isUserLoggedIn: true,
+            isNotificationDrawerVisible: false,
         });
         const returnedState = mapStateToProps(state);
-        expect(returnedState).toEqual({ isLoggedIn: true });
+        expect(returnedState).toEqual({ isLoggedIn: true, displayDrawer: false });
     });
 });
