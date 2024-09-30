@@ -38,8 +38,10 @@ function fetchNotifications() {
         dispatch(setLoadingState(true));
         return fetch('/notifications.json').then(response => {
             if (response.ok) {
-                dispatch(setNotifications(response.json));
-                dispatch(setLoadingState(false));
+                response.json().then(data => {
+                    dispatch(setNotifications(data));
+                    dispatch(setLoadingState(false));
+                });
             } else {
                 dispatch(setLoadingState(false));
             }
@@ -54,4 +56,11 @@ const boundNotificationActionCreator = dispatch => bindActionCreators({
     setNotificationFilter
 }, dispatch);
 
-export { markAsAread, setNotificationFilter, boundNotificationActionCreator };
+export {
+    markAsAread,
+    setNotificationFilter,
+    boundNotificationActionCreator,
+    setLoadingState,
+    setNotifications,
+    fetchNotifications
+};

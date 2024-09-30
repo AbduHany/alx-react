@@ -18,13 +18,15 @@ export default function notificationReducer(state = defaultState, action) {
     if (action) {
         switch (action.type) {
             case FETCH_NOTIFICATIONS_SUCCESS: {
-                const notificationList = action.data.map((notification) => {
-                    return { ...notification, isRead: false };
-                });
-                const normalizedNotificationList = notificationsNormalizer(notificationList);
-                return mergeDeep(state, Map({
-                    notifications: normalizedNotificationList,
+                // const notificationList = action.data.map((notification) => {
+                //     return { ...notification, isRead: false };
+                // });
+                const normalizedNotificationList = notificationsNormalizer(action.notifications);
+                const mergedState = mergeDeep(state, Map({
+                    notifications: normalizedNotificationList
                 }));
+                console.log(mergedState);
+                return mergedState;
             }
             case MARK_AS_READ: {
                 return state.setIn([
