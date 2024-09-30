@@ -10,7 +10,11 @@ import Footer from "../Footer/Footer";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 import AppContext, { user, logOut } from './AppContext';
-import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
+import {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+  loginRequest
+} from "../actions/uiActionCreators";
 import PropTypes from 'prop-types';
 
 
@@ -66,8 +70,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.logIn = this.logIn.bind(this);
-    this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
       user,
@@ -80,14 +82,6 @@ class App extends Component {
     this.setState({
       listNotifications: this.state.listNotifications.filter((item) => item.id !== id),
     })
-  }
-
-  logIn(email, password) {
-    this.setState({ user: { email, password, isLoggedIn: true } });
-  }
-
-  logOut() {
-    this.setState({ user: { email: "", password: "", isLoggedIn: false } });
   }
 
   handleKeyCombination(e) {
@@ -127,7 +121,7 @@ class App extends Component {
           <div className={css(styles.appBody)}>
             {!isLoggedIn ? (
               <BodySectionWithMarginBottom title="Log in to continue">
-                <Login logIn={this.logIn} />
+                <Login logIn={this.props.login} />
               </BodySectionWithMarginBottom>
             ) : (
               <BodySectionWithMarginBottom title="Course list">
@@ -187,6 +181,9 @@ export const mapDispatchToProps = (dispatch) => {
     },
     hideNotificationDrawer: () => {
       dispatch(hideNotificationDrawer());
+    },
+    login: (email, password) => {
+      dispatch(loginRequest(email, password));
     }
   }
 };
