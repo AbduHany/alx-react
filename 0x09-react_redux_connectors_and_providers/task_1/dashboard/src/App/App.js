@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 import AppContext, { user, logOut } from './AppContext';
+import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -124,8 +125,8 @@ class App extends Component {
         <Notifications
           listNotifications={listNotifications}
           displayDrawer={displayDrawer}
-          handleDisplayDrawer={this.handleDisplayDrawer}
-          handleHideDrawer={this.handleHideDrawer}
+          handleDisplayDrawer={this.props.displayNotificationDrawer}
+          handleHideDrawer={this.props.hideNotificationDrawer}
           markNotificationAsRead={this.markNotificationAsRead}
         />
         <div className={css(styles.container)}>
@@ -174,6 +175,17 @@ export const mapStateToProps = (state) => {
   };
 };
 
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    displayNotificationDrawer: () => {
+      dispatch(displayNotificationDrawer());
+    },
+    hideNotificationDrawer: () => {
+      dispatch(hideNotificationDrawer());
+    }
+  }
+};
+
 export { App };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
