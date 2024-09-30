@@ -11,6 +11,8 @@ import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
 import AppContext, { user, logOut } from './AppContext';
 import { displayNotificationDrawer, hideNotificationDrawer } from "../actions/uiActionCreators";
+import PropTypes from 'prop-types';
+
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -64,13 +66,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
-      displayDrawer: false,
       user,
       logOut: this.logOut,
       listNotifications,
@@ -97,14 +96,6 @@ class App extends Component {
       alert("Logging you out");
       this.state.logOut();
     }
-  }
-
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
-
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
   }
 
   componentDidMount() {
@@ -167,6 +158,20 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  displayDrawer: PropTypes.bool,
+  displayNotificationDrawer: PropTypes.func,
+  hideNotificationDrawer: PropTypes.func
+};
+
+App.defaultProps = {
+  isLoggedIn: false,
+  displayDrawer: false,
+  displayNotificationDrawer: () => { },
+  hideNotificationDrawer: () => { }
+};
 
 export const mapStateToProps = (state) => {
   return {
