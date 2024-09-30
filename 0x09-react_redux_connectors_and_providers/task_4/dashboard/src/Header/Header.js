@@ -58,7 +58,7 @@ Header.defaultProps = {
 
 export const mapStateToProps = (state) => {
   return {
-    user: state.get('user'),
+    user: state.ui.get('user'),
   };
 };
 

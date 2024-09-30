@@ -4,8 +4,10 @@ import notificationReducer from './notificationReducer';
 import uiReducer from './uiReducer';
 
 
-export default rootReducer = combineReducers({
+const rootReducer = combineReducers({
     courses: courseReducer,
     notifications: notificationReducer,
     ui: uiReducer
 });
+
+export default rootReducer;
