@@ -11,7 +11,7 @@ import { Map } from 'immutable';
 export const initialState = Map({
     isNotificationDrawerVisible: false,
     isUserLoggedIn: false,
-    user: {}
+    user: null
 });
 
 export default function uiReducer(state = initialState, action = {}) {
@@ -29,7 +29,10 @@ export default function uiReducer(state = initialState, action = {}) {
             return state.set('isUserLoggedIn', false);
         }
         case LOGOUT: {
-            return state.set('isUserLoggedIn', false);
+            return state.set('isUserLoggedIn', false).set('user', null);
+        }
+        case LOGIN: {
+            return state.set('user', action.user);
         }
         default:
             return state;
