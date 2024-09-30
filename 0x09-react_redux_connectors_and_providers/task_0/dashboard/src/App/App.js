@@ -116,7 +116,6 @@ class App extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-    console.log(isLoggedIn);
     const { displayDrawer, listNotifications } = this.state;
     const contextVal = { user: this.state.user, logOut: this.state.logOut };
 
@@ -168,10 +167,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.get('isUserLoggedIn'),
   };
 };
+
+export { App };
 
 export default connect(mapStateToProps)(App);

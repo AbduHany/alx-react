@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import App from './App';
+import { App } from './App';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
@@ -8,11 +8,14 @@ import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
 import AppContext, { user, logOut } from './AppContext';
+import { mapStateToProps } from './App';
+import { fromJS } from 'immutable';
 
 StyleSheetTestUtils.suppressStyleInjection();
 
 
 describe('<App />', () => {
+
     it('all of App renders', () => {
         shallow(<App />);
     });
@@ -62,8 +65,8 @@ describe('<App />', () => {
 describe('when isLoggedIn is true', () => {
     it('Login not included', () => {
         const wrapper = shallow(<App />);
-        wrapper.setState(
-            { user: { ...user, isLoggedIn: true, }, }
+        wrapper.setProps(
+            { isLoggedIn: true }
         );
         wrapper.update();
         expect(wrapper.find(Login)).toHaveLength(0);
@@ -71,8 +74,8 @@ describe('when isLoggedIn is true', () => {
 
     it('CourseList included', () => {
         const wrapper = shallow(<App />);
-        wrapper.setState(
-            { user: { ...user, isLoggedIn: true, }, }
+        wrapper.setProps(
+            { isLoggedIn: true }
         );
         wrapper.update();
         expect(wrapper.find(CourseList)).toHaveLength(1);
@@ -140,5 +143,16 @@ describe("Test State of <App />", () => {
         expect(appInstance.state.listNotifications).toHaveLength(3);
         appInstance.markNotificationAsRead(2);
         expect(appInstance.state.listNotifications).toHaveLength(2);
+    });
+});
+
+describe('Testing mapStateToProps function', () => {
+
+    it('returns the right object', () => {
+        let state = fromJS({
+            isUserLoggedIn: true
+        });
+        const returnedState = mapStateToProps(state);
+        expect(returnedState).toEqual({ isLoggedIn: true });
     });
 });
