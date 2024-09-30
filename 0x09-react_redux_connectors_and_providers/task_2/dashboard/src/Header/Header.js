@@ -29,7 +29,6 @@ class Header extends Component {
     super(props);
   }
   render() {
-    console.log(this.props);
     return (
       <>
         <div className={css(styles.header)}>
@@ -68,5 +67,7 @@ export const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logout()),
   };
 };
+
+export { Header };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

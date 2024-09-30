@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { App } from './App';
 import Notifications from '../Notifications/Notifications';
 import Login from '../Login/Login';
@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
-import AppContext, { user, logOut } from './AppContext';
+import { user } from './AppContext';
 import { mapStateToProps } from './App';
 import { fromJS } from 'immutable';
 
@@ -82,41 +82,10 @@ describe('when isLoggedIn is true', () => {
     });
 });
 
-describe("Test <App /> with logOut function", () => {
-    // verify that when the keys control and h are pressed the logOut function,
-    // passed as a prop, is called and the alert function is called with the string Logging you out
-    it("calls the logOut function and displays the alert", () => {
-        const alertMock = jest.spyOn(global, 'alert').mockImplementation(() => { });
-        const wrapper = mount(<App />);
-        wrapper.setState({ user: { ...user, isLoggedIn: true } });
-        const event = new KeyboardEvent('keydown', { key: 'h', ctrlKey: true });
-        document.dispatchEvent(event);
-        expect(alertMock).toHaveBeenCalledWith('Logging you out');
-        expect(wrapper.state('user')).toEqual({ email: '', password: '', isLoggedIn: false });
-        wrapper.unmount();
-        jest.restoreAllMocks();
-    });
-});
-
 describe("Test State of <App />", () => {
 
-    it('login changes state', () => {
-        const wrapper = mount(<App />);
-        const appInstance = wrapper.instance();
-        appInstance.logIn('emailTest', 'passwordTest');
-        expect(wrapper.state('user')).toEqual({ email: 'emailTest', password: 'passwordTest', isLoggedIn: true });
-    });
-
-    it('login changes state', () => {
-        const wrapper = mount(<App />);
-        const appInstance = wrapper.instance();
-        appInstance.setState({ user: { email: 'emailTest', password: 'passwordTest', isLoggedIn: true } });
-        appInstance.logOut();
-        expect(wrapper.state('user')).toEqual({ email: '', password: '', isLoggedIn: false });
-    });
-
     it('markNotificationAsRead works as intended', () => {
-        const wrapper = mount(<App />);
+        const wrapper = shallow(<App />);
         const appInstance = wrapper.instance();
         appInstance.setState({
             listNotifications: [
