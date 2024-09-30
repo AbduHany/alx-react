@@ -7,9 +7,9 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import CourseList from '../CourseList/CourseList';
 import { StyleSheetTestUtils } from 'aphrodite';
-import { user } from './AppContext';
 import { mapStateToProps } from './App';
 import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 
 StyleSheetTestUtils.suppressStyleInjection();
 
@@ -103,10 +103,14 @@ describe("Test State of <App />", () => {
 describe('Testing mapStateToProps function', () => {
 
     it('returns the right object', () => {
-        let state = fromJS({
-            isUserLoggedIn: true,
-            isNotificationDrawerVisible: false,
-        });
+        let state = {
+            ui: Map({
+                isUserLoggedIn: true,
+                isNotificationDrawerVisible: false,
+            }),
+            courses: Map({}),
+            notifications: Map({})
+        };
         const returnedState = mapStateToProps(state);
         expect(returnedState).toEqual({ isLoggedIn: true, displayDrawer: false });
     });
