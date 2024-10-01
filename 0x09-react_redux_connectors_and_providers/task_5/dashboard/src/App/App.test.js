@@ -82,24 +82,6 @@ describe('when isLoggedIn is true', () => {
     });
 });
 
-describe("Test State of <App />", () => {
-
-    it('markNotificationAsRead works as intended', () => {
-        const wrapper = shallow(<App />);
-        const appInstance = wrapper.instance();
-        appInstance.setState({
-            listNotifications: [
-                { id: 1, type: 'default', value: 'test01' },
-                { id: 2, type: 'urgent', value: 'test02' },
-                { id: 3, type: 'urgent', value: 'test03' },
-            ]
-        });
-        expect(appInstance.state.listNotifications).toHaveLength(3);
-        appInstance.markNotificationAsRead(2);
-        expect(appInstance.state.listNotifications).toHaveLength(2);
-    });
-});
-
 describe('Testing mapStateToProps function', () => {
 
     it('returns the right object', () => {

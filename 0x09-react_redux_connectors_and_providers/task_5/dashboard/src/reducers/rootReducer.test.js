@@ -1,5 +1,6 @@
+import notificationsNormalizer from "../schema/notifications";
 import rootReducer from "./rootReducer";
-import { Map } from 'immutable';
+import { isList, Map } from 'immutable';
 
 
 describe('rootReducer tests', () => {
@@ -14,8 +15,16 @@ describe('rootReducer tests', () => {
                 }),
                 courses: Map({}),
                 notifications: Map({
-                    notifications: [],
-                    filter: 'DEFAULT'
+                    notifications: {
+                        entities: {
+                            messages: {},
+                            notifications: {},
+                            users: {},
+                        },
+                        result: []
+                    },
+                    filter: 'DEFAULT',
+                    loading: false
                 })
             }
         );

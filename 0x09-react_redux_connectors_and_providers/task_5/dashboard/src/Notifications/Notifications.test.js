@@ -1,6 +1,6 @@
 import React, { act } from 'react';
 import { mount, shallow } from 'enzyme';
-import Notifications from './Notifications';
+import { Notifications } from './Notifications';
 import NotificationItem from './NotificationItem';
 import { StyleSheetTestUtils } from 'aphrodite';
 

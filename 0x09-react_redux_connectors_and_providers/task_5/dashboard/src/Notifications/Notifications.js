@@ -158,8 +158,8 @@ class Notifications extends PureComponent {
 
               {listNotifications.map((notification, index) => (
                 <NotificationItem
-                  key={notification.id}
-                  id={notification.id}
+                  key={notification.guid}
+                  id={notification.guid}
                   type={notification.type}
                   value={notification.value}
                   html={notification.html}
@@ -179,18 +179,19 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => { },
   handleHideDrawer: () => { },
-  markNotificationAsRead: () => { },
+  fetchNotifications: () => { },
 };
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-  markNotificationAsRead: PropTypes.func,
+  fetchNotifications: PropTypes.func,
+  listNotifications: PropTypes.arrayOf(PropTypes.object),
 };
 
 const mapStateToProps = (state) => {
-  console.log(Object.values(state.notifications.get('notifications').entities.messages))
+  console.log(Object.values(state.notifications.get('notifications').entities.messages));
   return {
     listNotifications: Object.values(state.notifications.get('notifications').entities.messages)
   };
