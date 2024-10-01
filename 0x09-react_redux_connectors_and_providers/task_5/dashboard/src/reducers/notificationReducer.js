@@ -10,7 +10,14 @@ import notificationsNormalizer from '../schema/notifications';
 
 
 export const defaultState = Map({
-    notifications: [],
+    notifications: {
+        entities: {
+            messages: {},
+            notifications: {},
+            users: {},
+        },
+        result: []
+    },
     filter: NotificationTypeFilters.DEFAULT,
     loading: false
 });

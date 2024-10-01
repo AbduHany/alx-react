@@ -193,7 +193,7 @@ Notifications.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    listNotifications: state.notifications.get('notifications')
+    listNotifications: state.notifications.get('notifications').entities.messages
   };
 };
 
