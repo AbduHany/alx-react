@@ -32,7 +32,6 @@ export default function notificationReducer(state = defaultState, action) {
                 const mergedState = mergeDeep(state, Map({
                     notifications: normalizedNotificationList
                 }));
-                console.log(mergedState);
                 return mergedState;
             }
             case MARK_AS_READ: {

@@ -24,12 +24,6 @@ const listCourses = [
   { id: 3, name: "React", credit: 40 },
 ];
 
-const listNotifications = [
-  { id: 1, type: "default", value: "New course available" },
-  { id: 2, type: "urgent", value: "New resume available" },
-  { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
-];
-
 document.body.style.margin = 0;
 
 const cssVars = {
@@ -70,18 +64,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleKeyCombination = this.handleKeyCombination.bind(this);
-    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
     this.state = {
       user,
       logOut: this.logOut,
-      listNotifications,
     };
-  }
-
-  markNotificationAsRead(id) {
-    this.setState({
-      listNotifications: this.state.listNotifications.filter((item) => item.id !== id),
-    })
   }
 
   handleKeyCombination(e) {
@@ -102,13 +88,11 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, displayDrawer } = this.props;
-    const { listNotifications } = this.state;
     const contextVal = { user: this.state.user, logOut: this.state.logOut };
 
     return (
       <AppContext.Provider value={contextVal}>
         <Notifications
-          listNotifications={listNotifications}
           displayDrawer={displayDrawer}
           handleDisplayDrawer={this.props.displayNotificationDrawer}
           handleHideDrawer={this.props.hideNotificationDrawer}

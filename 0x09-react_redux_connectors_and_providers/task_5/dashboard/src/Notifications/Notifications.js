@@ -1,7 +1,6 @@
 import React, { Component, PureComponent } from "react";
 import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
-import NotificationItemShape from "./NotificationItemShape";
 import closeIcon from "../assets/close-icon.png";
 import { StyleSheet, css } from "aphrodite";
 import { fetchNotifications } from "../actions/notificationActionCreators";
@@ -157,7 +156,7 @@ class Notifications extends PureComponent {
                 <NotificationItem value="No new notification for now" />
               )}
 
-              {listNotifications.map((notification) => (
+              {listNotifications.map((notification, index) => (
                 <NotificationItem
                   key={notification.id}
                   id={notification.id}
@@ -185,15 +184,15 @@ Notifications.defaultProps = {
 
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-  listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
   markNotificationAsRead: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
+  console.log(Object.values(state.notifications.get('notifications').entities.messages))
   return {
-    listNotifications: state.notifications.get('notifications').entities.messages
+    listNotifications: Object.values(state.notifications.get('notifications').entities.messages)
   };
 };
 
