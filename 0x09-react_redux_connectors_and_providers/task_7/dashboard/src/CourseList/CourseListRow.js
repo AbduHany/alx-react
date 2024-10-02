@@ -33,40 +33,63 @@ const rowStyle = {
     backgroundColor: '#f5f5f5ab'
 };
 
-const CourseListRow = ({ isHeader = false, textFirstCell, textSecondCell = null }) => {
-
-    const [rowChecked, setRowChecked] = React.useState(false);
-
-    return (
-        <tr className={isHeader ? css(styles.headerStyle) : css(styles.rowStyle)}>
-            {isHeader ?
-                (textSecondCell === null ?
-                    <th className={css(styles.thCol2)} colSpan={2}>{textFirstCell}</th> :
-                    <>
-                        <th className={css(styles.th)}>
+class CourseListRow extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const {
+            isHeader = false,
+            textFirstCell,
+            textSecondCell = null,
+            isChecked = false,
+            onChangeRow = () => { },
+            id = 0
+        } = this.props;
+        return (
+            <tr className={isHeader ? css(styles.headerStyle) : css(styles.rowStyle)}>
+                {isHeader ?
+                    (textSecondCell === null ?
+                        <th className={css(styles.thCol2)} colSpan={2}>{textFirstCell}</th> :
+                        <>
+                            <th className={css(styles.th)}>
+                                {textFirstCell}
+                            </th>
+                            <th className={css(styles.th)}>{textSecondCell}</th>
+                        </>
+                    )
+                    : <>
+                        <td className={css(isChecked ? styles.rowChecked : styles.td)}>
+                            <input type="checkbox" checked={isChecked} onChange={() => {
+                                onChangeRow(id, isChecked);
+                            }} />
                             {textFirstCell}
-                        </th>
-                        <th className={css(styles.th)}>{textSecondCell}</th>
+                        </td>
+                        <td className={css(isChecked ? styles.rowChecked : styles.td)}>
+                            {textSecondCell}
+                        </td>
                     </>
-                )
-                : <>
-                    <td className={css(rowChecked ? styles.rowChecked : styles.td)}>
-                        <input type="checkbox" checked={rowChecked} onChange={() => setRowChecked(!rowChecked)} />
-                        {textFirstCell}
-                    </td>
-                    <td className={css(rowChecked ? styles.rowChecked : styles.td)}>
-                        {textSecondCell}
-                    </td>
-                </>
-            }
-        </tr>
-    )
+                }
+            </tr>
+        );
+    }
 }
 
 CourseListRow.propTypes = {
     isHeader: PropTypes.bool,
     textFirstCell: PropTypes.string.isRequired,
-    textSecondCell: PropTypes.string || PropTypes.number
+    textSecondCell: PropTypes.string || PropTypes.number,
+    isChecked: PropTypes.bool,
+    onChangeRow: PropTypes.func,
+    id: PropTypes.string
+}
+
+CourseListRow.defaultProps = {
+    isHeader: false,
+    isChecked: false,
+    textFirstCell: '',
+    textSecondCell: '',
+    onChangeRow: () => { },
 }
 
 export default CourseListRow

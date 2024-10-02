@@ -1,12 +1,12 @@
 import { coursesNormalizer } from "../schema/courses";
-import { getCourses } from "./courseSelector";
+import { getListCourses } from "./courseSelector";
 import { Map } from 'immutable';
 
 
 describe('testing courseSelector', () => {
-    it('tests getCourses function', () => {
-        const initialState = Map({
-            courses: coursesNormalizer([
+    it('tests getListCourses function', () => {
+        const initialState = Map(
+            coursesNormalizer([
                 {
                     "id": "1",
                     "name": "ES6",
@@ -22,10 +22,10 @@ describe('testing courseSelector', () => {
                     "name": "React",
                     "credit": 40
                 }
-            ]
-            )
-        });
-        const courses = getCourses(initialState);
+            ])
+        );
+        const courses = getListCourses(initialState);
+        console.log(courses);
         expect(courses).toEqual([
             {
                 "id": "1",
