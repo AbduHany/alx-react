@@ -70,13 +70,14 @@ const styles = StyleSheet.create({
     "@media screen and (max-width: 900px)": {
       width: "100vw",
       height: "100vh",
+      overflow: "auto",
       margin: 0,
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
       zIndex: 1,
-      fontSize: "20px",
+      fontSize: "20px"
     },
   },
 
@@ -92,6 +93,7 @@ const styles = StyleSheet.create({
   notificationsUL: {
     margin: "20px",
     "@media screen and (max-width: 900px)": {
+      maxWidth: "90vw",
       padding: 0,
       margin: 0,
       listStyle: "none",
@@ -153,12 +155,12 @@ class Notifications extends PureComponent {
             </p>
             <ul className={css(styles.notificationsUL)}>
               {listNotifications.length === 0 && (
-                <NotificationItem value="No new notification for now" />
+                <NotificationItem key={0} value="No new notification for now" />
               )}
 
               {listNotifications.map((notification, index) => (
                 <NotificationItem
-                  key={notification.guid}
+                  key={index}
                   id={notification.guid}
                   type={notification.type}
                   value={notification.value}
@@ -191,7 +193,6 @@ Notifications.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(Object.values(state.notifications.get('notifications').entities.messages));
   return {
     listNotifications: Object.values(state.notifications.get('notifications').entities.messages)
   };

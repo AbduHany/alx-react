@@ -149,4 +149,17 @@ describe('<Notifications />', () => {
         expect(handleDisplayDrawer).toHaveBeenCalledTimes(0);
         jest.restoreAllMocks();
     });
+
+    it('calls fetchNotifications when componentDidMount is called', () => {
+        const fetchNotifications = jest.fn();
+        const listNotifications = [
+            { guid: '5debd7642e815cd350407777', isRead: false, type: 'default', value: 'TRYING ANYTHING.' },
+            { guid: '5debd7642e815cd350407738', isRead: false, type: 'urgent', value: 'I FEEL GREAT TODAY!' },
+        ];
+        const wrapper = shallow(<Notifications
+            listNotifications={listNotifications}
+            fetchNotifications={fetchNotifications} />);
+        expect(fetchNotifications).toHaveBeenCalledTimes(1);
+        jest.restoreAllMocks();
+    });
 });

@@ -38,11 +38,10 @@ class NotificationItem extends React.PureComponent {
 NotificationItem.defaultProps = {
     type: "default",
     markAsRead: () => { },
-    id: 0
+    id: "0"
 };
 
 NotificationItem.propTypes = {
-    guid: PropTypes.string,
     type: PropTypes.string.isRequired,
     value: PropTypes.string,
     markAsRead: PropTypes.func,

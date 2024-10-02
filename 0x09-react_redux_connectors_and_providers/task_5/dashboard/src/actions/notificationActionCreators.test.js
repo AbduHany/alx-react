@@ -1,13 +1,23 @@
 import {
     MARK_AS_READ,
     SET_TYPE_FILTER,
-    NotificationTypeFilters
+    NotificationTypeFilters,
+    SET_LOADING_STATE,
+    FETCH_NOTIFICATIONS_SUCCESS
 } from './notificationActionTypes';
 import {
+    fetchNotifications,
     markAsAread,
-    setNotificationFilter
+    setLoadingState,
+    setNotificationFilter,
+    setNotifications
 } from './notificationActionCreators';
+import fetchMock from 'fetch-mock';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
+
+const mockStore = configureStore([thunk]);
 
 describe('notificationActionCreators test', () => {
     it('markAsAread function returns correct action', () => {
@@ -32,5 +42,23 @@ describe('notificationActionCreators test', () => {
         const action2 = setNotificationFilter(NotificationTypeFilters.DEFAULT);
         expect(action1).toEqual(expectedAction1);
         expect(action2).toEqual(expectedAction2);
+    });
+
+    it('tests setLoadingState function', () => {
+        const expectedAction = {
+            type: SET_LOADING_STATE,
+            loadingState: true
+        };
+        const action = setLoadingState(true);
+        expect(action).toEqual(expectedAction);
+    });
+
+    it('tests setNotifications function', () => {
+        const expectedAction = {
+            type: FETCH_NOTIFICATIONS_SUCCESS,
+            notifications: [1, 2, 3]
+        }
+        const action = setNotifications([1, 2, 3]);
+        expect(action).toEqual(expectedAction);
     });
 });
