@@ -61,4 +61,34 @@ describe('notificationActionCreators test', () => {
         const action = setNotifications([1, 2, 3]);
         expect(action).toEqual(expectedAction);
     });
+
+    it('tests fetchNotifications function', () => {
+        const store = mockStore({});
+        fetchMock.restore();
+        fetchMock.getOnce('/notifications.json', {
+            status: 200,
+            body: {
+                notifications: [1, 2, 3]
+            }
+        });
+        return store.dispatch(fetchNotifications()).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual(setLoadingState(true));
+            expect(actions[1]).toEqual(setNotifications({ notifications: [1, 2, 3] }));
+            expect(actions[2]).toEqual(setLoadingState(false));
+        })
+    });
+
+    it('tests fetchNotifications function failure', () => {
+        const store = mockStore({});
+        fetchMock.restore();
+        fetchMock.getOnce('/notifications.json', {
+            status: 404
+        });
+        return store.dispatch(fetchNotifications()).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual(setLoadingState(true));
+            expect(actions[1]).toEqual(setLoadingState(false));
+        })
+    });
 });

@@ -1,4 +1,4 @@
-import { FETCH_NOTIFICATIONS_SUCCESS, NotificationTypeFilters, SET_TYPE_FILTER } from "../actions/notificationActionTypes";
+import { FETCH_NOTIFICATIONS_SUCCESS, NotificationTypeFilters, SET_LOADING_STATE, SET_TYPE_FILTER } from "../actions/notificationActionTypes";
 import notificationsNormalizer from "../schema/notifications";
 import notificationReducer from "./notificationReducer";
 import { defaultState } from './notificationReducer';
@@ -78,5 +78,39 @@ describe('notificationReducer test', () => {
         };
         const returnedState = notificationReducer(initialState, actionObject);
         expect(returnedState.get('filter')).toBe(NotificationTypeFilters.URGENT);
+    });
+
+    it('tests SET_LOADING_STATE true', () => {
+        const initialState = Map({
+            notifications: notificationsNormalizer([
+                { id: 1, type: "default", value: "New course available" },
+                { id: 2, type: "urgent", value: "New resume available" },
+                { id: 3, type: "urgent", value: "New data available" }]),
+            filter: NotificationTypeFilters.DEFAULT,
+            isLoading: false
+        });
+        const actionObject = {
+            type: SET_LOADING_STATE,
+            loadingState: true
+        };
+        const returnedState = notificationReducer(initialState, actionObject);
+        expect(returnedState.get('loading')).toBe(true);
+    });
+
+    it('tests SET_LOADING_STATE false', () => {
+        const initialState = Map({
+            notifications: notificationsNormalizer([
+                { id: 1, type: "default", value: "New course available" },
+                { id: 2, type: "urgent", value: "New resume available" },
+                { id: 3, type: "urgent", value: "New data available" }]),
+            filter: NotificationTypeFilters.DEFAULT,
+            isLoading: true
+        });
+        const actionObject = {
+            type: SET_LOADING_STATE,
+            loadingState: false
+        };
+        const returnedState = notificationReducer(initialState, actionObject);
+        expect(returnedState.get('loading')).toBe(false);
     });
 });
